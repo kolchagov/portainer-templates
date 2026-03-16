@@ -33,12 +33,17 @@
           "name": "HOST_PORT",
           "label": "Host port",
           "default": "1433"
+        },
+        {
+          "name": "DATA_FOLDER",
+          "label": "Data folder",
+          "default": "/srv"
         }
       ],
       "volumes": [
         {
           "container": "/var/opt/mssql",
-          "bind": "/path/to/your/data/folder",
+          "bind": "[[DATA_FOLDER]]",
           "readonly": false
         }
       ]
