@@ -1,0 +1,47 @@
+{
+  "version": "3",
+  "templates": [
+  {
+  "id": 1,
+  "type": 1,
+  "title": "SQL Server 2017-custom",
+  "description": "Microsoft SQL Server 2017 (custom data-path) on Linux",
+  "categories": [
+    "Database"
+  ],
+  "platform": "linux",
+  "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+  "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+  "image": "mcr.microsoft.com/mssql/server:2017-latest",
+  "ports": [
+    {
+      "host": "[[HOST_PORT]]",
+      "container": "1433",
+      "protocol": "tcp"
+    }
+  ],
+  "env": [
+    {
+      "name": "ACCEPT_EULA",
+      "set": "Y"
+    },
+    {
+      "name": "SA_PASSWORD",
+      "label": "SA password"
+    },
+    {
+      "name": "HOST_PORT",
+      "label": "Host port",
+      "default": "1433"
+    }
+  ],
+  "volumes": [
+    {
+      "container": "/var/opt/mssql",
+      "bind": "/path/to/your/data/folder",
+      "readonly": false
+    }
+  ],
+}]
+}
+
