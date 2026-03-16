@@ -1,0 +1,51 @@
+{
+  "templates": [
+    {
+      "type": 1,
+      "categories": [
+        "Utilities"
+      ],
+      "name": "Custom Nginx with ENV Inputs",
+      "description": "Nginx server with user-configurable domain, port, and timezone.",
+      "platform": "linux",
+      "logo": "https://nginx.org/nginx.png",
+      "image": "nginx:alpine",
+      "ports": [
+        "80:80"
+      ],
+      "volumes": [
+        "/data/nginx:/usr/share/nginx/html:ro"
+      ],
+      "env": [
+        {
+          "name": "SERVER_NAME",
+          "label": "Server Domain",
+          "description": "Domain name for the virtual host (e.g., example.com)",
+          "default": "localhost"
+        },
+        {
+          "name": "NGINX_PORT",
+          "label": "Internal Port",
+          "description": "Port inside the container",
+          "default": "80",
+          "select": [
+            {
+              "text": "HTTP (80)",
+              "value": "80"
+            },
+            {
+              "text": "HTTPS (443)",
+              "value": "443"
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Timezone",
+          "description": "Container timezone (e.g., Europe/Sofia)"
+        }
+      ],
+      "command": "/bin/sh -c 'echo \"<h1>Hello from $$SERVER_NAME (Port: $$NGINX_PORT, TZ: $$TZ)</h1>\" > /usr/share/nginx/html/index.html && nginx -g \"daemon off;\""
+    }
+  ]
+}

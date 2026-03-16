@@ -1,10 +1,10 @@
 {
-  "version": "3",
+  "version": "2",
   "templates": [
     {
       "type": 1,
-      "title": "SQL Server 2017",
-      "description": "Microsoft SQL Server 2017 on Linux",
+      "title": "SQL Server 2017-custom",
+      "description": "Microsoft SQL Server 2017 (custom data-path) on Linux",
       "categories": [
         "Database"
       ],
@@ -13,19 +13,35 @@
       "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
       "image": "mcr.microsoft.com/mssql/server:2017-latest",
       "ports": [
-        "1433/tcp"
+        "[[HOST_PORT]]:1433/tcp"
       ],
       "env": [
         {
           "name": "ACCEPT_EULA",
-          "set": "Y"
+          "default": "Y",
+          "preset": true
         },
         {
           "name": "SA_PASSWORD",
           "label": "SA password"
+        },
+        {
+          "name": "HOST_PORT",
+          "label": "Host port",
+          "default": "1433"
+        },
+        {
+          "name": "DATA_FOLDER",
+          "label": "Data folder",
+          "default": "/srv"
         }
       ],
-      "maintainer": " https://github.com/mikestraney/portainer-templates/"
+      "volumes": [
+        {
+          "container": "/var/opt/mssql",
+          "bind": "[[DATA_FOLDER]]"
+        }
+      ]
     }
   ]
 }
