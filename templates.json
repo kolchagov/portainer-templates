@@ -46,7 +46,8 @@
           "bind": "[[DATA_FOLDER]]",
           "readonly": false
         }
-      ]
+      ],
+      "maintainer": "https://github.com/kolchagov/portainer-templates/"
     }
   ]
 }
