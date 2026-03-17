@@ -1,0 +1,14 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      MSSQL_COLLATION: "Cyrillic_General_CI_AS"
+      SA_PASSWORD: ${SA_PASSWORD:?SA_PASSWORD is required}
+    ports:
+      - "${HOST_PORT:-1433}:1433"
+    volumes:
+      - ${FOLDER:?FOLDER is required}/data:/var/opt/mssql
+      - ${FOLDER:?FOLDER is required}/backup:/var/opt/mssql/backup
+    restart: unless-stopped

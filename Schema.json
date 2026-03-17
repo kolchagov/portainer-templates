@@ -3,7 +3,10 @@
   "title": "Portainer Templates Schema",
   "description": "JSON Schema for validating Portainer template files",
   "type": "object",
-  "required": ["version", "templates"],
+  "required": [
+    "version",
+    "templates"
+  ],
   "properties": {
     "version": {
       "type": "string",
@@ -14,12 +17,24 @@
       "description": "Array of template definitions",
       "items": {
         "type": "object",
-        "required": ["type", "title"],
+        "required": [
+          "type",
+          "title"
+        ],
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Optional template ID used by Portainer v3"
+          },
           "type": {
             "type": "integer",
             "description": "Template type: 1=container, 2=swarm stack, 3=compose stack, 4=edge stack",
-            "enum": [1, 2, 3, 4]
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ]
           },
           "title": {
             "type": "string",
@@ -36,11 +51,16 @@
           },
           "categories": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "platform": {
             "type": "string",
-            "enum": ["linux", "windows"]
+            "enum": [
+              "linux",
+              "windows"
+            ]
           },
           "logo": {
             "type": "string",
@@ -54,35 +74,61 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["name"],
+              "required": [
+                "name"
+              ],
               "properties": {
-                "name": { "type": "string" },
-                "label": { "type": "string" },
-                "default": { "type": "string" },
-                "preset": { "type": "boolean" },
-                "description": { "type": "string" }
+                "name": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "default": {
+                  "type": "string"
+                },
+                "preset": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "set": {
+                  "type": "string"
+                },
+                "select": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "text",
+                      "value"
+                    ],
+                    "properties": {
+                      "text": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "default": {
+                        "type": "boolean"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
               }
             }
           },
           "ports": {
             "type": "array",
             "items": {
-              "anyOf": [
-                { "type": "string" },
-                {
-                  "type": "object",
-                  "required": ["host", "container"],
-                  "properties": {
-                    "host": { "type": "string" },
-                    "container": { "type": "string" },
-                    "protocol": {
-                      "type": "string",
-                      "enum": ["tcp", "udp"]
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              ]
+              "type": "string",
+              "description": "Port mapping such as 80/tcp or 8080:80/tcp"
             }
           },
           "volumes": {
@@ -90,21 +136,48 @@
             "items": {
               "type": "object",
               "properties": {
-                "container": { "type": "string" },
-                "bind": { "type": "string" }
+                "container": {
+                  "type": "string"
+                },
+                "bind": {
+                  "type": "string"
+                },
+                "readonly": {
+                  "type": "boolean"
+                }
               }
             }
           },
-          "privileged": { "type": "boolean" },
-          "network": { "type": "string" },
-          "restart_policy": { "type": "string" },
-          "maintainer": { "type": "string" },
-          "note": { "type": "string" },
+          "interactive": {
+            "type": "boolean"
+          },
+          "command": {
+            "type": "string"
+          },
+          "privileged": {
+            "type": "boolean"
+          },
+          "network": {
+            "type": "string"
+          },
+          "restart_policy": {
+            "type": "string"
+          },
+          "maintainer": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
           "repository": {
             "type": "object",
             "properties": {
-              "url": { "type": "string" },
-              "stackfile": { "type": "string" }
+              "url": {
+                "type": "string"
+              },
+              "stackfile": {
+                "type": "string"
+              }
             }
           }
         }

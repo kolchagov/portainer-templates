@@ -2,6 +2,7 @@
   "version": "3",
   "templates": [
     {
+      "id": 1,
       "type": 1,
       "title": "SQL Server 2017",
       "description": "Microsoft SQL Server 2017 on Linux",
@@ -9,7 +10,7 @@
         "Database"
       ],
       "platform": "linux",
-      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols.",
+      "note": "Password needs to include at least 8 characters including uppercase, lowercase letters, base-10 digits and/or non-alphanumeric symbols. Replace both bind paths with real host folders and set the published host port during deployment.",
       "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
       "image": "mcr.microsoft.com/mssql/server:2017-latest",
       "ports": [
@@ -18,14 +19,86 @@
       "env": [
         {
           "name": "ACCEPT_EULA",
-          "set": "Y"
+          "default": "Y",
+          "preset": true
+        },
+        {
+          "name": "MSSQL_PID",
+          "default": "Express",
+          "preset": true
+        },
+        {
+          "name": "MSSQL_COLLATION",
+          "default": "Cyrillic_General_CI_AS",
+          "preset": true
         },
         {
           "name": "SA_PASSWORD",
           "label": "SA password"
         }
       ],
-      "maintainer": " https://github.com/mikestraney/portainer-templates/"
+      "volumes": [
+        {
+          "container": "/var/opt/mssql",
+          "bind": "/path/on/host/sqlserver-data"
+        },
+        {
+          "container": "/var/opt/mssql/backup",
+          "bind": "/path/on/host/sqlserver-backup"
+        }
+      ],
+      "maintainer": "https://github.com/kolchagov/portainer-templates/"
+    },
+    {
+      "id": 2,
+      "type": 3,
+      "title": "SQL Server 2017 (Compose)",
+      "name": "sqlserver2017",
+      "description": "Microsoft SQL Server 2017 on Linux with labeled prompts for host port and a shared root folder.",
+      "categories": [
+        "Database"
+      ],
+      "platform": "linux",
+      "note": "Use this template if you want labeled fields for the published host port and a shared root folder. The compose file will mount FOLDER/data and FOLDER/backup. The referenced compose file must exist on the repository default branch.",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
+      "repository": {
+        "url": "https://github.com/kolchagov/portainer-templates",
+        "stackfile": "stacks/sqlserver/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "ACCEPT_EULA",
+          "default": "Y",
+          "preset": true
+        },
+        {
+          "name": "MSSQL_PID",
+          "default": "Express",
+          "preset": true
+        },
+        {
+          "name": "MSSQL_COLLATION",
+          "default": "Cyrillic_General_CI_AS",
+          "preset": true
+        },
+        {
+          "name": "HOST_PORT",
+          "label": "Host port",
+          "description": "Published host port for SQL Server.",
+          "default": "1433"
+        },
+        {
+          "name": "FOLDER",
+          "label": "SQL data folder",
+          "description": "Absolute host path used as the base folder. Portainer will mount FOLDER/data and FOLDER/backup."
+        },
+        {
+          "name": "SA_PASSWORD",
+          "label": "SA password",
+          "description": "Must meet SQL Server password complexity requirements."
+        }
+      ],
+      "maintainer": "https://github.com/kolchagov/portainer-templates/"
     }
   ]
 }
