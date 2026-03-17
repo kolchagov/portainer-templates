@@ -8,3 +8,10 @@ This repository contains my selection of Portainer templates.
 - `stacks/` contains compose files for stack-based templates.
 
 After updating the templates, run `./merger.sh` to rebuild `all.json`.
+
+# How to use it
+Set App Templates path in portainer to this url:
+
+```
+https://raw.githubusercontent.com/kolchagov/portainer-templates/main/all.json
+```
