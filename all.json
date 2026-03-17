@@ -21701,6 +21701,59 @@
         }
       ],
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
+    },
+    {
+      "type": 3,
+      "title": "Custom Nginx with ENV Inputs (Compose)",
+      "name": "nginx-custom-stack",
+      "description": "Nginx server with configurable domain, published host port, internal listen port, and timezone.",
+      "categories": [
+        "Utilities"
+      ],
+      "platform": "linux",
+      "note": "This stack generates a default nginx server block and a simple index page from the values entered during deployment.",
+      "logo": "https://nginx.org/nginx.png",
+      "repository": {
+        "url": "https://github.com/kolchagov/portainer-templates",
+        "stackfile": "stacks/nginx/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "SERVER_NAME",
+          "label": "Server domain",
+          "description": "Domain name for the nginx server block.",
+          "default": "localhost"
+        },
+        {
+          "name": "HOST_PORT",
+          "label": "Host port",
+          "description": "Published host port for nginx.",
+          "default": "80"
+        },
+        {
+          "name": "NGINX_PORT",
+          "label": "Internal port",
+          "description": "Port nginx listens on inside the container.",
+          "default": "80",
+          "select": [
+            {
+              "text": "HTTP (80)",
+              "value": "80"
+            },
+            {
+              "text": "HTTPS (443)",
+              "value": "443"
+            }
+          ]
+        },
+        {
+          "name": "TZ",
+          "label": "Timezone",
+          "description": "Container timezone used in the generated landing page.",
+          "default": "Europe/Helsinki"
+        }
+      ],
+      "maintainer": "https://github.com/kolchagov/portainer-templates/"
     }
   ]
 }
