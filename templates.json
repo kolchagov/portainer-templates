@@ -77,6 +77,8 @@
         },
         {
           "name": "FOLDER",
+          "default": "/srv",
+          "preset": false,
           "label": "SQL data folder",
           "description": "Absolute host path used as the base folder. Portainer will mount FOLDER/data and FOLDER/backup."
         },
