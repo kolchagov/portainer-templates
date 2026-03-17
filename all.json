@@ -21640,16 +21640,6 @@
           "label": "SA password"
         }
       ],
-      "volumes": [
-        {
-          "container": "/var/opt/mssql",
-          "bind": "/path/on/host/sqlserver-data"
-        },
-        {
-          "container": "/var/opt/mssql/backup",
-          "bind": "/path/on/host/sqlserver-backup"
-        }
-      ],
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
     },
     {
@@ -21671,17 +21661,17 @@
         {
           "name": "ACCEPT_EULA",
           "default": "Y",
-          "preset": true
+          "preset": false
         },
         {
           "name": "MSSQL_PID",
           "default": "Express",
-          "preset": true
+          "preset": false
         },
         {
           "name": "MSSQL_COLLATION",
           "default": "Cyrillic_General_CI_AS",
-          "preset": true
+          "preset": false
         },
         {
           "name": "HOST_PORT",
