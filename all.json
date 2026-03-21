@@ -21643,7 +21643,7 @@
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
     },
     {
-      "type": 3,
+      "type": 1,
       "title": "SQL Server 2017 (Compose)",
       "name": "sqlserver2017",
       "description": "Microsoft SQL Server 2017 on Linux with labeled prompts for host port and a shared root folder.",
@@ -21681,6 +21681,8 @@
         },
         {
           "name": "FOLDER",
+          "default": "/srv",
+          "preset": false,
           "label": "SQL data folder",
           "description": "Absolute host path used as the base folder. Portainer will mount FOLDER/data and FOLDER/backup."
         },
@@ -21688,6 +21690,12 @@
           "name": "SA_PASSWORD",
           "label": "SA password",
           "description": "Must meet SQL Server password complexity requirements."
+        },
+        {
+          "name": "TZ",
+          "label": "Timezone",
+          "description": "Container timezone used in the generated landing page.",
+          "default": "Europe/Helsinki"
         }
       ],
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
