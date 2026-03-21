@@ -86,6 +86,12 @@
           "name": "SA_PASSWORD",
           "label": "SA password",
           "description": "Must meet SQL Server password complexity requirements."
+        },
+        {
+          "name": "TZ",
+          "label": "Timezone",
+          "description": "Container timezone used in the generated landing page.",
+          "default": "Europe/Helsinki"
         }
       ],
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
