@@ -39,7 +39,7 @@
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
     },
     {
-      "type": 3,
+      "type": 1,
       "title": "SQL Server 2017 (Compose)",
       "name": "sqlserver2017",
       "description": "Microsoft SQL Server 2017 on Linux with labeled prompts for host port and a shared root folder.",
