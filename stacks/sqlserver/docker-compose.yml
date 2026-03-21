@@ -9,6 +9,6 @@ services:
     ports:
       - "${HOST_PORT:-1433}:1433"
     volumes:
-      - ${FOLDER:?FOLDER is required}/data:/var/opt/mssql
+      - ${FOLDER:?FOLDER is required}/data:/var/opt/mssql/data
       - ${FOLDER:?FOLDER is required}/backup:/var/opt/mssql/backup
     restart: unless-stopped
