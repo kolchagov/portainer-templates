@@ -21643,7 +21643,7 @@
       "maintainer": "https://github.com/kolchagov/portainer-templates/"
     },
     {
-      "type": 1,
+      "type": 3,
       "title": "SQL Server 2017 (Compose)",
       "name": "sqlserver2017",
       "description": "Microsoft SQL Server 2017 on Linux with labeled prompts for host port and a shared root folder.",
@@ -21653,7 +21653,6 @@
       "platform": "linux",
       "note": "Use this template if you want labeled fields for the published host port and a shared root folder. The compose file will mount FOLDER/data and FOLDER/backup. The referenced compose file must exist on the repository default branch.",
       "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/microsoft.png",
-      "image": "mcr.microsoft.com/mssql/server:2017-latest",
       "repository": {
         "url": "https://github.com/kolchagov/portainer-templates",
         "stackfile": "stacks/sqlserver/docker-compose.yml"
